@@ -15,7 +15,6 @@
                     "Articles"
                 ],
                 "summary": "Liste des articles",
-                "description": "Récupère la liste paginée des articles",
                 "operationId": "93ded9e31119e6bbb22455c72ef97f19",
                 "responses": {
                     "200": {
@@ -32,6 +31,9 @@
                                             "items": {
                                                 "properties": {
                                                     "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "user_id": {
                                                         "type": "integer"
                                                     },
                                                     "titre": {
@@ -89,15 +91,12 @@
                                 ],
                                 "properties": {
                                     "titre": {
-                                        "type": "string",
-                                        "example": "Mon premier article"
+                                        "type": "string"
                                     },
                                     "contenu": {
-                                        "type": "string",
-                                        "example": "Contenu de l'article..."
+                                        "type": "string"
                                     },
                                     "image": {
-                                        "description": "Image de l'article",
                                         "type": "file"
                                     }
                                 },
@@ -108,7 +107,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Article créé avec succès"
+                        "description": "Article créé"
                     }
                 },
                 "security": [
@@ -129,7 +128,6 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID de l'article",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -155,7 +153,6 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID de l'article",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -186,6 +183,9 @@
                 "responses": {
                     "200": {
                         "description": "Article modifié"
+                    },
+                    "403": {
+                        "description": "Non autorisé"
                     }
                 },
                 "security": [
@@ -204,7 +204,6 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID de l'article",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -214,6 +213,9 @@
                 "responses": {
                     "200": {
                         "description": "Article supprimé"
+                    },
+                    "403": {
+                        "description": "Non autorisé"
                     }
                 },
                 "security": [
@@ -547,7 +549,7 @@
     "tags": [
         {
             "name": "Articles",
-            "description": "Articles"
+            "description": "Opérations sur les articles"
         },
         {
             "name": "Authentification",
