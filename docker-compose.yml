@@ -11,3 +11,20 @@ services:
       - .:/var/www
     ports:
       - "6666:8080"
+    depends_on:
+      - postgres_db   # Laravel attend que PostgreSQL soit prêt
+
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_mini_blog
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5440:5432"
+
+volumes:
+  pgdata:
